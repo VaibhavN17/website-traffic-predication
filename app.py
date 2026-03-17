@@ -568,8 +568,18 @@ with tabs[3]:
             line=dict(color='rgba(0,0,0,0)'),
             name='Confidence Band', showlegend=True
         ))
-        fig.add_vline(x=hist_recent['datetime'].iloc[-1], line_color='#a78bfa',
-                      line_dash='dash', annotation_text='Forecast Start')
+        forecast_start = hist_recent['datetime'].iloc[-1]
+        fig.add_vline(x=forecast_start, line_color='#a78bfa', line_dash='dash')
+        fig.add_annotation(
+            x=forecast_start,
+            y=1,
+            xref='x',
+            yref='paper',
+            text='Forecast Start',
+            showarrow=False,
+            yshift=10,
+            font=dict(color='#a78bfa', size=11)
+        )
         fig.update_layout(
             template='plotly_dark', height=400,
             paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(15,17,23,0.8)',
